@@ -1,0 +1,15 @@
+{
+  "name": "vitalik/book-store",
+  "authors": [
+    {
+      "name": "vitalii-pokrivchak",
+      "email": "pokrivchakzvitalja@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/"
+    }
+  }
+}
