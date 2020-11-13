@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a167933e29d46e04497992aaabf5fc2a9009ef15',
+    'reference' => '0a7ca37eef1fbc02a3956db9ce634d5b71cdace8',
     'name' => 'vitalik/book-store',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a167933e29d46e04497992aaabf5fc2a9009ef15',
+      'reference' => '0a7ca37eef1fbc02a3956db9ce634d5b71cdace8',
     ),
   ),
 );
