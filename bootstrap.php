@@ -17,3 +17,5 @@ $request = new Request;
 $router = new Router($request);
 $app = new Application($router);
 $db = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
+
+//yura balint
