@@ -23,23 +23,28 @@ class Router
             $controller = $url[0];
             $controller[0] = strtoupper($controller[0]);
             $classname = "app\\controllers\\" . $controller . "Controller";
-            $class = new $classname;
-            if (count($url) > 1) {
-                $action = $url[1];
+            if (class_exists($classname)) {
                 $class = new $classname;
-                if (method_exists($class, $action)) {
-                    $class->$action();
+                if (count($url) > 1) {
+                    $action = $url[1];
+                    $class = new $classname;
+                    if (method_exists($class, $action)) {
+                        $class->$action();
+                    } else {
+                        http_response_code(404);
+                        require_once "./app/views/404.php";
+                    }
                 } else {
-                    http_response_code(404);
-                    require_once "./app/views/404.php";
+                    if (method_exists($class, 'index')) {
+                        $class->index();
+                    } else {
+                        http_response_code(404);
+                        require_once "./app/views/404.php";
+                    }
                 }
             } else {
-                if (method_exists($class, 'index')) {
-                    $class->index();
-                } else {
-                    http_response_code(404);
-                    require_once "./app/views/404.php";
-                }
+                http_response_code(404);
+                require_once "./app/views/404.php";
             }
         }
     }

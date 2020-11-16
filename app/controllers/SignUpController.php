@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
-class SignUpController
+class SignUpController extends Controller
 {
+    public function index()
+    {
+    }
 }

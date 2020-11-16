@@ -13,4 +13,8 @@ class DbConnection extends mysqli
             echo "Connection Error : " . $this->connect_errno . $this->connect_error;
         }
     }
+    public function close()
+    {
+        parent::close();
+    }
 }

@@ -8,7 +8,7 @@
 
 </head>
 <style>
-    * {
+    /* * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -28,7 +28,7 @@
         font-size: 50px;
         color: blue;
         font-weight: bold;
-    }
+    } */
 </style>
 
 <body>

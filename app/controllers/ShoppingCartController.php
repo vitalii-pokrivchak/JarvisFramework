@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-class ShoppingCartController
+class ShoppingCartController extends Controller
 {
     public function index()
     {
