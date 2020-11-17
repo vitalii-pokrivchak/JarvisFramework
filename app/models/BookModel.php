@@ -9,10 +9,8 @@ use app\db\DbConnection;
 //* Class BookModel extends of Model
 class BookModel extends Model
 {
-    private DbConnection $connection;
-    public function __construct(DbConnection $connection)
+    public function __construct()
     {
-        $this->connection = $connection;
     }
 
     /**
