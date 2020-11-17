@@ -39,20 +39,20 @@ class BaseSQLOperations implements IBaseSQLOperations
             $connection = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
 
               
-            // $sqlQuery = "";
+            $sqlQuery = "";
 
-            // if (mysqli_query($connection, $sqlQuery)) {
-            //     echo "New record created successfully";
-            //     } else {
-            //         echo "!!!New record is not  created successfully!!!";
-            //     }
+            if (mysqli_query($connection, $sqlQuery)) {
+                echo "New record created successfully";
+                } else {
+                    echo "!!!New record is not  created successfully!!!";
+                }
 
 
           $connection->close();
     }
 
 
-    public static function update(string $table, array $columns, array $values, string $condition)
+    public static function update(string $table, ModelObject $model, string $condition)
     {
             $connection = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
             
