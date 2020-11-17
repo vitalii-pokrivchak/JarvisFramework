@@ -39,7 +39,6 @@ class Book extends ModelObject
         $this->language_id = $book['language_id'];
         $this->book_category_id = $book['book_category_id'];
         $this->illustration = $book['illustration'];
-        $this->uploaded_at = $book['uploaded_at'];
         $this->book_type_id = $book['book_type_id'];
         $this->price = $book['price'];
     }
@@ -298,5 +297,25 @@ class Book extends ModelObject
     public function set_price(float $price)
     {
         $this->price = $price;
+    }
+
+    public function get_all()
+    {
+        $allInfo = array(
+            'id' => $this->id,
+            'title' => $this->title,
+            'author_id' => $this->author_id,
+            'poster' => $this->poster,
+            'pages' => $this->pages,
+            'preview_text' => $this->preview_text,
+            'publishing_house_id' => $this->publishing_house_id,
+            'published_at' => $this->published_at,
+            'language_id' => $this->language_id,
+            'book_category_id' => $this->book_category_id,
+            'illustration' => $this->illustration,
+            'book_type_id' => $this->book_type_id,
+            'price' => $this->price,
+        );
+        return $allInfo;
     }
 }

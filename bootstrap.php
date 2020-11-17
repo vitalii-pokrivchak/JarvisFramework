@@ -23,15 +23,17 @@ $db = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
 
 $testDB = new BaseSQLOperations();
 
+
+
 $bookparam = array(
-    'id' => 6,
+    'id' => 3,
     'title' => 'PHP 7.4',
     'author_id' => 2,
     'poster' => 'Poster.jpg',
     'pages' => 726,
     'preview_text' => 'this is a preview text',
     'publishing_house_id' => 1,
-    'published_at' => '2020-11-12 19:56:04',
+    'published_at' => 1,
     'language_id' => 1,
     'book_category_id' => 2,
     'illustration' => 1,
@@ -42,5 +44,4 @@ $bookparam = array(
 
 $book = new Book($bookparam);
 
-$testDB->insert("author",$book);
-
+$testDB->insert('book', $book);

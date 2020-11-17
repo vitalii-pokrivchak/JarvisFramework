@@ -38,8 +38,15 @@ class BaseSQLOperations implements IBaseSQLOperations
     {
             $connection = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
 
-              
-            $sqlQuery = "";
+              $values = $model->get_all();
+
+              $sqlQuery = sprintf(
+                'INSERT INTO book (%s) VALUES ("%s")',
+                implode(',',array_keys($values)),
+                implode('","',array_values($values))
+            );
+            echo  $sqlQuery;
+
 
             if (mysqli_query($connection, $sqlQuery)) {
                 echo "New record created successfully";
