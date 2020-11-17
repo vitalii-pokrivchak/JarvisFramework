@@ -7,9 +7,21 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="../styles/bootstrap/css/bootstrap.min.css">
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+    }
+</style>
 
 <body>
-
+    <?php require_once TEMPLATES_PATH . "HeaderTemplate.php"; ?>
     <?php require_once VIEWS_PATH . $view . '.php'; ?>
 
 
