@@ -21,7 +21,7 @@ class BookModel extends Model
      */
     public function get_all(): array
     {
-        return BaseSQLOperations::select($this->connection, "book", null, "Book");
+        return BaseSQLOperations::select("book", null, "Book");
     }
     /**
      ** @vitalii-pokrivchak
@@ -32,7 +32,7 @@ class BookModel extends Model
      */
     public function get(int $id): Book
     {
-        return BaseSQLOperations::select($this->connection, "book", "id = $id", "Book");
+        return BaseSQLOperations::select("book", "id = $id", "Book");
     }
     /**
      ** @HrabV
