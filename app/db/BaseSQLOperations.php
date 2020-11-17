@@ -38,8 +38,21 @@ class BaseSQLOperations implements IBaseSQLOperations
     {
         $connection = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
 
+              $values = $model->get_all();
 
-        // $sqlQuery = "";
+              $sqlQuery = sprintf(
+                'INSERT INTO author (%s) VALUES ("%s")',
+                implode(',',array_keys($values)),
+                implode('","',array_values($values))
+            );
+            echo  $sqlQuery . "<br>";
+
+
+            if (mysqli_query($connection, $sqlQuery)) {
+                echo "New record created successfully";
+                } else {
+                    echo "!!!New record is not  created successfully!!!";
+                }
 
         // if (mysqli_query($connection, $sqlQuery)) {
         //     echo "New record created successfully";
@@ -52,7 +65,7 @@ class BaseSQLOperations implements IBaseSQLOperations
     }
 
 
-    public static function update(string $table, array $columns, array $values, string $condition)
+    public static function update(string $table, ModelObject $model, string $condition)
     {
         $connection = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
 

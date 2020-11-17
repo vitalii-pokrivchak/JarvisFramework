@@ -6,6 +6,7 @@ class Author extends ModelObject
 {
     private int $id;
     private string $fio;
+    private int $country_id;
     private string $birthday;
     private string $photo;
 
@@ -13,6 +14,7 @@ class Author extends ModelObject
     {
         $this->id = $author['id'];
         $this->fio = $author['fio'];
+        $this->country_id = $author['country_id'];
         $this->birthday = $author['birthday'];
         $this->photo = $author['photo'];
     }
@@ -93,5 +95,16 @@ class Author extends ModelObject
     public function set_photo(string $photo)
     {
         $this->photo = $photo;
+    }
+
+    public function get_all()
+    {
+            $allInfo = array(
+                'id' => $this->id,
+                'fio' => $this->fio,
+                'birthday' => $this->birthday,
+                'country_id' => $this->country_id,
+                'photo' => $this->photo,);
+                return $allInfo;
     }
 }
