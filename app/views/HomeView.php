@@ -3,7 +3,7 @@
         <?php foreach ($all_books as $book) : ?>
 
             <div class="col-sm m-3">
-                <div class="card border-0 shadow" style="width: 18rem;">
+                <div class="card p-3 shadow-sm" style="width: 18rem;border-radius: 20px !important;">
                     <div class="card-body">
                         <h5 class="card-title"><?= $book->get_title(); ?></h5>
                         <h6 class="card-subtitle mb-2 text-muted"><?= $all_authors[$book->get_author_id()]->get_fio() ?></h6>
