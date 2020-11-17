@@ -13,6 +13,7 @@ use app\core\Request;
 use app\core\Router;
 use app\db\BaseSQLOperations;
 use app\db\DbConnection;
+use app\models\Author;
 use app\models\Book;
 
 $request = new Request;
@@ -45,3 +46,14 @@ $bookparam = array(
 $book = new Book($bookparam);
 
 $testDB->insert('book', $book);
+
+$authorParam = array(
+    'id' => 4,
+    'fio' => 'Author King',
+    'country_id' => 2,
+    'birthday' => 1,
+    'photo' => 'photo44.jpg'
+);
+$author = new Author($authorParam);
+
+$testDB->insert('author',$author);

@@ -41,11 +41,11 @@ class BaseSQLOperations implements IBaseSQLOperations
               $values = $model->get_all();
 
               $sqlQuery = sprintf(
-                'INSERT INTO book (%s) VALUES ("%s")',
+                'INSERT INTO author (%s) VALUES ("%s")',
                 implode(',',array_keys($values)),
                 implode('","',array_values($values))
             );
-            echo  $sqlQuery;
+            echo  $sqlQuery . "<br>";
 
 
             if (mysqli_query($connection, $sqlQuery)) {
