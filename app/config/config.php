@@ -12,3 +12,4 @@ const DB_PORT = "3260";
 const DEVELOPMENT_SERVER = "http://localhost:8000";
 const APP_NAME = "BookStore";
 const VIEWS_PATH  = "./app/views/";
+const TEMPLATES_PATH = "./app/views/templates/";

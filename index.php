@@ -28,6 +28,6 @@ $bookModel = new BookModel($db);
 // }
 
 
-$book = $bookModel->get(1);
-echo "<pre>";
-var_dump($book);
+// $book = $bookModel->get(1);
+// echo "<pre>";
+// var_dump($book);
