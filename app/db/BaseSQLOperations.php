@@ -23,7 +23,10 @@ class BaseSQLOperations implements IBaseSQLOperations
             if ($classname != null) {
                 $classname = MODELS_NAMESPACE . $classname;
                 if (count($data) === 1) {
-                    return new $classname($data[0]);
+                    return array(
+                        new $classname($data[0])
+                    );
+                   
                 } else {
                     $result = [];
                     foreach ($data as $d) {
@@ -46,7 +49,7 @@ class BaseSQLOperations implements IBaseSQLOperations
         $values = $model->get_all();
 
         $sqlQuery = sprintf(
-            'INSERT INTO author (%s) VALUES ("%s")',
+            'INSERT INTO '. $table. ' (%s) VALUES ("%s")',
             implode(',', array_keys($values)),
             implode('","', array_values($values))
         );

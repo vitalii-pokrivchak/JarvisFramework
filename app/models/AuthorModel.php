@@ -12,7 +12,7 @@ class AuthorModel extends Model
         if ($result) {
             return $result;
         }
-        return false;
+        return array();
     }
     public function get(int $id): Author
     {

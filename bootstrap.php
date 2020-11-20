@@ -22,38 +22,37 @@ $app = new Application($router);
 $db = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
 
 
-// $testDB = new BaseSQLOperations();
+$testDB = new BaseSQLOperations();
 
 
+$bookparam = array(
+    'title' => 'Harry Potter and the Philosopher\'s Stone',
+    'author_id' => 15,
+    'poster' => 'Harry Potter',
+    'pages' => 980,
+    'preview_text' => 'tst book',
+    'publishing_house_id' => 1,
+    'published_at' => 2012,
+    'language_id' => 1,
+    'book_category_id' => 1,
+    'illustration' => 1,
+    'book_type_id' => 1,
+    'price' => 	299.99,
 
-// $bookparam = array(
-//     'id' => 3,
-//     'title' => 'PHP 7.4',
-//     'author_id' => 2,
-//     'poster' => 'Poster.jpg',
-//     'pages' => 726,
-//     'preview_text' => 'this is a preview text',
-//     'publishing_house_id' => 1,
-//     'published_at' => 1,
-//     'language_id' => 1,
-//     'book_category_id' => 2,
-//     'illustration' => 1,
-//     'book_type_id' => 3,
-//     'price' => 	534.99,
+);
+$book = new Book($bookparam);
 
-// );
+//$testDB->insert('book', $book);
 
-// $book = new Book($bookparam);
+$date = "1965-07-31";
+$date = date("Y-m-d",strtotime($date));
 
-// $testDB->insert('book', $book);
+$authorParam = array(
+    'fio' => 'J.K. Rowling',
+    'country_id' => 1,
+    'birthday' => $date,
+    'photo' => 'J.K. Rowling.jpg'
+);
+ $author = new Author($authorParam);
 
-// $authorParam = array(
-//     'id' => 4,
-//     'fio' => 'Author King',
-//     'country_id' => 2,
-//     'birthday' => 1,
-//     'photo' => 'photo44.jpg'
-// );
-// $author = new Author($authorParam);
-
-// $testDB->insert('author',$author);
+ //$testDB->insert('author',$author);

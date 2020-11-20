@@ -4,7 +4,6 @@ namespace app\models;
 
 class Author extends ModelObject
 {
-    private int $id;
     private string $fio;
     private int $country_id;
     private string $birthday;
@@ -12,7 +11,6 @@ class Author extends ModelObject
 
     public function __construct(array $author)
     {
-        $this->id = $author['id'];
         $this->fio = $author['fio'];
         $this->country_id = $author['country_id'];
         $this->birthday = $author['birthday'];
@@ -24,10 +22,7 @@ class Author extends ModelObject
      *
      * @return void
      */
-    public function get_id()
-    {
-        return $this->id;
-    }
+    
     /**
      * get_fio
      *
@@ -100,7 +95,6 @@ class Author extends ModelObject
     public function get_all()
     {
         $allInfo = array(
-            'id' => $this->id,
             'fio' => $this->fio,
             'birthday' => $this->birthday,
             'country_id' => $this->country_id,

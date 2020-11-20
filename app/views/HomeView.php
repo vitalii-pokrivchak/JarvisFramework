@@ -6,8 +6,9 @@
             <li data-target="#myCarousel" data-slide-to="2" class=""></li>
         </ol>
         <div class="carousel-inner">
-            <?php $r = rand(0, (count($books) - 1)); ?>
+            <?php $r = rand(0, (count($books))); ?>
             <?php foreach ($books as $key => $book) : ?>
+              
                 <?php if ($key === $r) : ?>
                     <div class="carousel-item active">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -17,7 +18,6 @@
                         <div class="container">
                             <div class="carousel-caption text-center">
                                 <h1><?= $book->get_title() ?></h1>
-                                <h3><?= $authors[$book->get_author_id()]->get_fio() ?></h3>
                                 <p><?= $book->get_preview_text() ?></p>
                                 <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
                             </div>
@@ -31,7 +31,7 @@
                         <div class="container">
                             <div class="carousel-caption text-center">
                                 <h1><?= $book->get_title() ?></h1>
-                                <h3><?= $authors[$book->get_author_id()]->get_fio() ?></h3>
+                               
                                 <p><?= $book->get_preview_text() ?></p>
                                 <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
                             </div>
