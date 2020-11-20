@@ -13,3 +13,16 @@ const DEVELOPMENT_SERVER = "http://localhost:8000";
 const APP_NAME = "BookStore";
 const VIEWS_PATH  = "./app/views/";
 const TEMPLATES_PATH = "./app/views/templates/";
+
+# Default Settings
+const DEFAULT_CONTROLLER = "app\controllers\HomeController";
+const DEFAULT_ACTION = "index";
+const DEFAULT_QUERY_METHOD = "get";
+
+# Default namespaces
+const ROOT_NAMESPACE = "app\\";
+const CONTROLLERS_NAMESPACE = "app\\controllers\\";
+const MODELS_NAMESPACE = "app\\models\\";
+
+# 404
+const NOT_FOUND_PAGE = "./app/views/404.php";

@@ -22,38 +22,38 @@ $app = new Application($router);
 $db = new DbConnection(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT);
 
 
-$testDB = new BaseSQLOperations();
+// $testDB = new BaseSQLOperations();
 
 
 
-$bookparam = array(
-    'id' => 3,
-    'title' => 'PHP 7.4',
-    'author_id' => 2,
-    'poster' => 'Poster.jpg',
-    'pages' => 726,
-    'preview_text' => 'this is a preview text',
-    'publishing_house_id' => 1,
-    'published_at' => 1,
-    'language_id' => 1,
-    'book_category_id' => 2,
-    'illustration' => 1,
-    'book_type_id' => 3,
-    'price' => 	534.99,
+// $bookparam = array(
+//     'id' => 3,
+//     'title' => 'PHP 7.4',
+//     'author_id' => 2,
+//     'poster' => 'Poster.jpg',
+//     'pages' => 726,
+//     'preview_text' => 'this is a preview text',
+//     'publishing_house_id' => 1,
+//     'published_at' => 1,
+//     'language_id' => 1,
+//     'book_category_id' => 2,
+//     'illustration' => 1,
+//     'book_type_id' => 3,
+//     'price' => 	534.99,
 
-);
+// );
 
-$book = new Book($bookparam);
+// $book = new Book($bookparam);
 
-$testDB->insert('book', $book);
+// $testDB->insert('book', $book);
 
-$authorParam = array(
-    'id' => 4,
-    'fio' => 'Author King',
-    'country_id' => 2,
-    'birthday' => 1,
-    'photo' => 'photo44.jpg'
-);
-$author = new Author($authorParam);
+// $authorParam = array(
+//     'id' => 4,
+//     'fio' => 'Author King',
+//     'country_id' => 2,
+//     'birthday' => 1,
+//     'photo' => 'photo44.jpg'
+// );
+// $author = new Author($authorParam);
 
-$testDB->insert('author',$author);
+// $testDB->insert('author',$author);

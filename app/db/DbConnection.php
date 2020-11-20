@@ -2,9 +2,9 @@
 
 namespace app\db;
 
-use mysqli;
 
-class DbConnection extends mysqli
+
+class DbConnection extends \mysqli
 {
     public function __construct($host, $user, $password, $db_name, $port)
     {

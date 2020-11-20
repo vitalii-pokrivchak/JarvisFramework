@@ -6,7 +6,6 @@ namespace app\models;
 //* Class Book extended of ModelObject
 class Book extends ModelObject
 {
-    public int $id;
     public string $title;
     public int $author_id;
     public string $poster;
@@ -28,7 +27,6 @@ class Book extends ModelObject
      */
     public function __construct(array $book)
     {
-        $this->id = $book['id'];
         $this->title = $book['title'];
         $this->author_id = $book['author_id'];
         $this->poster = $book['poster'];
@@ -41,15 +39,6 @@ class Book extends ModelObject
         $this->illustration = $book['illustration'];
         $this->book_type_id = $book['book_type_id'];
         $this->price = $book['price'];
-    }
-    /**
-     * get_id
-     *
-     * @return int
-     */
-    public function get_id(): int
-    {
-        return $this->id;
     }
     /**
      * get_title
@@ -302,7 +291,6 @@ class Book extends ModelObject
     public function get_all()
     {
         $allInfo = array(
-            'id' => $this->id,
             'title' => $this->title,
             'author_id' => $this->author_id,
             'poster' => $this->poster,
