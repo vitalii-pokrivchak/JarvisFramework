@@ -14,7 +14,7 @@ class Router
     }
     public function run()
     {
-        $default_controller = DEFAULT_CONTROLLER;
+        $default_controller = CONTROLLERS_NAMESPACE . DEFAULT_CONTROLLER;
         $default_action = DEFAULT_ACTION;
         $default_query_method = DEFAULT_QUERY_METHOD;
         $url = $this->request->get_request_uri();

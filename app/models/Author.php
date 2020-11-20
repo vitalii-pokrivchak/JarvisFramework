@@ -99,12 +99,20 @@ class Author extends ModelObject
 
     public function get_all()
     {
-            $allInfo = array(
-                'id' => $this->id,
-                'fio' => $this->fio,
-                'birthday' => $this->birthday,
-                'country_id' => $this->country_id,
-                'photo' => $this->photo,);
-                return $allInfo;
+        $allInfo = array(
+            'id' => $this->id,
+            'fio' => $this->fio,
+            'birthday' => $this->birthday,
+            'country_id' => $this->country_id,
+            'photo' => $this->photo,
+        );
+        return $allInfo;
+    }
+
+
+    public function getName()
+    {
+        $path = explode('\\', __CLASS__);
+        return array_pop($path);
     }
 }
