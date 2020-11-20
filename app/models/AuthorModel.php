@@ -8,11 +8,19 @@ class AuthorModel extends Model
 {
     public function get_all(): array
     {
-        return BaseSQLOperations::select("author", null, "Author");
+        $result = BaseSQLOperations::select("author", null, "Author");
+        if ($result) {
+            return $result;
+        }
+        return false;
     }
     public function get(int $id): Author
     {
-        return BaseSQLOperations::select("author", "id = $id", "Author");
+        $result = BaseSQLOperations::select("author", "id = $id", "Author");
+        if ($result) {
+            return $result;
+        }
+        return false;
     }
     public function write()
     {

@@ -306,4 +306,10 @@ class Book extends ModelObject
         );
         return $allInfo;
     }
+
+    public function getName()
+    {
+        $path = explode('\\', __CLASS__);
+        return array_pop($path);
+    }
 }
