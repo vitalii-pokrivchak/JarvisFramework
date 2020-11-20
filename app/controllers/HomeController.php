@@ -24,10 +24,14 @@ class HomeController extends Controller
     }
     public function index()
     {
+
         $this->bundle->setData([
             'books' => $this->book_model->get_all(),
             'authors' => $this->author_model->get_all()
         ]);
+            
         parent::render($this->bundle);
+
+       
     }
 }

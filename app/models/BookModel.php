@@ -22,6 +22,9 @@ class BookModel extends Model
     public function get_all()
     {
         $result = BaseSQLOperations::select("book", null, "Book");
+            // echo "<pre>";
+            // var_dump($result);
+
         if ($result) {
             return $result;
         }
