@@ -19,9 +19,13 @@ class BookModel extends Model
      *
      * @return array
      */
-    public function get_all(): array
+    public function get_all()
     {
-        return BaseSQLOperations::select("book", null, "Book");
+        $result = BaseSQLOperations::select("book", null, "Book");
+        if ($result) {
+            return $result;
+        }
+        return false;
     }
     /**
      ** @vitalii-pokrivchak
@@ -30,9 +34,13 @@ class BookModel extends Model
      * @param  mixed $id
      * @return Book
      */
-    public function get(int $id): Book
+    public function get(int $id)
     {
-        return BaseSQLOperations::select("book", "id = $id", "Book");
+        $result = BaseSQLOperations::select("book", "id = $id", "Book");
+        if ($result) {
+            return $result;
+        }
+        return false;
     }
     /**
      ** @HrabV
