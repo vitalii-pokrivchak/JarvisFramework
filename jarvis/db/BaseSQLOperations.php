@@ -4,10 +4,9 @@
 
 //TODO: Make insert,update,delete method`s @HrabV
 
-namespace app\db;
+namespace jarvis\db;
 
-use app\models\Model;
-use app\models\ModelObject;
+use jarvis\models\ModelObject;
 
 class BaseSQLOperations implements IBaseSQLOperations
 {
@@ -26,7 +25,6 @@ class BaseSQLOperations implements IBaseSQLOperations
                     return array(
                         new $classname($data[0])
                     );
-                   
                 } else {
                     $result = [];
                     foreach ($data as $d) {
@@ -49,7 +47,7 @@ class BaseSQLOperations implements IBaseSQLOperations
         $values = $model->get_all();
 
         $sqlQuery = sprintf(
-            'INSERT INTO '. $table. ' (%s) VALUES ("%s")',
+            'INSERT INTO ' . $table . ' (%s) VALUES ("%s")',
             implode(',', array_keys($values)),
             implode('","', array_values($values))
         );

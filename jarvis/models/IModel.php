@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace jarvis\models;
 
 interface IModel
 {
