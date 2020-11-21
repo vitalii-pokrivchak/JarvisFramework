@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '0a7ca37eef1fbc02a3956db9ce634d5b71cdace8',
+    'reference' => '71df16800f5f8ec2afc638838397fa8c226b4d11',
     'name' => 'vitalik/book-store',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '0a7ca37eef1fbc02a3956db9ce634d5b71cdace8',
+      'reference' => '71df16800f5f8ec2afc638838397fa8c226b4d11',
     ),
   ),
 );

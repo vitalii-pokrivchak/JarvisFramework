@@ -1,8 +1,9 @@
 <?php
 
-namespace app\core;
+namespace jarvis\core;
 
-use app\models\ModelObject;
+use app\models\Model;
+use jarvis\models\ModelObject;
 
 class BundleCollection
 {

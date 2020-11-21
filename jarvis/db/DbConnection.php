@@ -1,8 +1,6 @@
 <?php
 
-namespace app\db;
-
-
+namespace jarvis\db;
 
 class DbConnection extends \mysqli
 {

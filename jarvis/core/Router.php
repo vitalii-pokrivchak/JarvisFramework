@@ -1,9 +1,6 @@
 <?php
 
-namespace app\core;
-
-use app\controllers\HomeController;
-use ReflectionMethod;
+namespace jarvis\core;
 
 class Router
 {

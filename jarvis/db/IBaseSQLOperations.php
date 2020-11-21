@@ -1,7 +1,8 @@
 <?php
 
-namespace app\db;
-use app\models\ModelObject;
+namespace jarvis\db;
+
+use jarvis\models\ModelObject;
 
 interface IBaseSQLOperations
 {

@@ -1,9 +1,6 @@
 <?php
 
-namespace app\core;
-
-use app\models\Model;
-use ArrayObject;
+namespace jarvis\core;
 
 class Bundle
 {
