@@ -2,9 +2,7 @@
 
 namespace jarvis\controllers;
 
-use jarvis\core\BundleCollection;
 use jarvis\core\Bundle;
-use jarvis\models\UserModel;
 
 class WelcomeController extends Controller
 {

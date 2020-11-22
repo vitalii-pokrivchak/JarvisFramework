@@ -11,7 +11,8 @@ class BundleCollection
     public function __construct(ModelObject $model = null)
     {
         if ($model != null) {
-            $this->models[$model->getName()] = $model;
+            $classname = new \ReflectionClass($model);
+            $this->models[$classname->getShortName()] = $model;
         } else {
             $this->models = array();
         }
@@ -23,7 +24,8 @@ class BundleCollection
     public function addModel(ModelObject $model)
     {
         if (!array_key_exists(get_class($model), $this->models)) {
-            $this->models[$model->getName()] = $model;
+            $classname = new \ReflectionClass($model);
+            $this->models[$classname->getShortName()] = $model;
         }
     }
 }

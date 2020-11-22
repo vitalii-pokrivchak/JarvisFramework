@@ -2,16 +2,7 @@
 
 namespace jarvis\models;
 
-class ModelObject
+abstract class ModelObject
 {
-    public function get_all()
-    {
-        return array();
-    }
-
-    public function getName()
-    {
-        $path = explode('\\', __CLASS__);
-        return array_pop($path);
-    }
+    public abstract function GetAllData(): array;
 }
