@@ -2,6 +2,7 @@
 
 # Configuration file for Book Store @vitalii-pokrivchak
 # Connection to database @vitalii-pokrivchak
+const DB_DRIVER = "mysql";
 const DB_HOST = "localhost";
 const DB_NAME = "bookstore";
 const DB_USER = "root";
