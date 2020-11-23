@@ -16,6 +16,7 @@
     }
   ],
   "license": "MIT",
+  "minimum-stability": "dev",
   "description": "Jarvis Framework this is a MVC framework for building website using PHP ",
   "version": "v0.1",
   "require": {
