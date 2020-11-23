@@ -1,5 +1,5 @@
 {
-  "name": "jarvis/jarvis-framework",
+  "name": "jarvis-technologies/jarvis-framework",
   "authors": [
     {
       "name": "vitalii-pokrivchak",
@@ -15,6 +15,8 @@
       "role": "Teammate"
     }
   ],
+  "license": "MIT",
+  "minimum-stability": "dev",
   "description": "Jarvis Framework this is a MVC framework for building website using PHP ",
   "version": "v0.1",
   "require": {
@@ -22,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "jarvis\\": "jarvis/"
+      "jarvis\\": "/"
     }
   }
 }
