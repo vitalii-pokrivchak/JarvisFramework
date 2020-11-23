@@ -1,12 +1,25 @@
 {
-  "name": "vitalik/book-store",
+  "name": "jarvis/jarvis-framework",
   "authors": [
     {
       "name": "vitalii-pokrivchak",
-      "email": "pokrivchakzvitalja@gmail.com"
+      "email": "pokrivchakzvitalja@gmail.com",
+      "role": "TeamLead"
+    },
+    {
+      "name": "HrabV",
+      "role": "Teammate"
+    },
+    {
+      "name": "Supalapka",
+      "role": "Teammate"
     }
   ],
-  "require": {},
+  "description": "Jarvis Framework this is a MVC framework for building website using PHP ",
+  "version": "v0.1",
+  "require": {
+    "php": "^7.4"
+  },
   "autoload": {
     "psr-4": {
       "jarvis\\": "jarvis/"

@@ -14,24 +14,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
+    'pretty_version' => 'v0.1',
+    'version' => '0.1.0.0',
     'aliases' => 
     array (
     ),
-    'reference' => '71df16800f5f8ec2afc638838397fa8c226b4d11',
-    'name' => 'vitalik/book-store',
+    'reference' => NULL,
+    'name' => 'jarvis/jarvis-framework',
   ),
   'versions' => 
   array (
-    'vitalik/book-store' => 
+    'jarvis/jarvis-framework' => 
     array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
+      'pretty_version' => 'v0.1',
+      'version' => '0.1.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '71df16800f5f8ec2afc638838397fa8c226b4d11',
+      'reference' => NULL,
     ),
   ),
 );
