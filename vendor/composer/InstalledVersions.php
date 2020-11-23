@@ -20,11 +20,11 @@ private static $installed = array (
     array (
     ),
     'reference' => NULL,
-    'name' => 'jarvis/jarvis-framework',
+    'name' => 'jarvis-technologies/jarvis-framework',
   ),
   'versions' => 
   array (
-    'jarvis/jarvis-framework' => 
+    'jarvis-technologies/jarvis-framework' => 
     array (
       'pretty_version' => 'v0.1',
       'version' => '0.1.0.0',

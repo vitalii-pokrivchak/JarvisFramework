@@ -16,7 +16,7 @@ class ComposerStaticInitbc6146ad462699c1b009b9c5d68a603b
     public static $prefixDirsPsr4 = array (
         'jarvis\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/jarvis',
+            0 => '/',
         ),
     );
 
