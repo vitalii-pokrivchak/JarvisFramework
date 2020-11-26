@@ -11,12 +11,20 @@ class ComposerStaticInitf4369d9948550786a0e040ef5d04cf77
         array (
             'jarvis\\' => 7,
         ),
+        'a' => 
+        array (
+            'app\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'jarvis\\' => 
         array (
-            0 => '/',
+            0 => __DIR__ . '/../..' . '/framework',
+        ),
+        'app\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 

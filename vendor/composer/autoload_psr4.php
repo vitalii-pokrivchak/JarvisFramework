@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'jarvis\\' => array('/'),
+    'jarvis\\' => array($baseDir . '/framework'),
+    'app\\' => array($baseDir . '/app'),
 );
