@@ -5,7 +5,6 @@ namespace app\controllers;
 use jarvis\controllers\Controller;
 use jarvis\core\Bundle;
 
-
 class HomeController extends Controller
 {
     private Bundle $bundle;
