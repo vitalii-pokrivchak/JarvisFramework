@@ -1,0 +1,25 @@
+{
+  "name": "JarvisFramework",
+  "version": "1.0.0",
+  "description": "[![](https://i.ytimg.com/an_webp/2NxQq7N7UAY/mqdefault_6s.webp?du=3000&sqp=COiG__0F&rs=AOn4CLDONDk1px7if9u_9Zj13GNR_RIYHQ)](https://www.youtube.com/watch?v=2NxQq7N7UAY)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "postcss app/src/app.css -o app/public/app.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalii-pokrivchak/JarvisFramework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalii-pokrivchak/JarvisFramework/issues"
+  },
+  "homepage": "https://github.com/vitalii-pokrivchak/JarvisFramework#readme",
+  "dependencies": {
+    "autoprefixer": "^10.0.4",
+    "postcss": "^8.1.10",
+    "tailwindcss": "^2.0.1"
+  }
+}
