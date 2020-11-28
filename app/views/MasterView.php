@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <?php require_once VIEWS_PATH . $view . ".php"; ?>
+    <?php require_once $views_path . $view . ".php"; ?>
 </body>
 
 </html>
