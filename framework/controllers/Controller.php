@@ -2,6 +2,7 @@
 
 namespace jarvis\controllers;
 
+use jarvis\config\Config;
 use jarvis\core\Bundle;
 
 abstract class Controller
@@ -14,7 +15,8 @@ abstract class Controller
             $data = [];
             extract([
                 'title' => $bundle->getTitle(),
-                'view' => $bundle->getView()
+                'view' => $bundle->getView(),
+                "views_path" => Config::GetAppSettingByKey("views_path")
             ]);
             if ($bundle->getCollection() != null) {
                 if ($bundle->getCollection()->getModels() != null) {
@@ -31,6 +33,6 @@ abstract class Controller
                 extract($data);
             }
         }
-        require_once VIEWS_PATH . DEFAULT_VIEW . ".php";
+        require_once Config::GetAppSettingByKey("views_path") . Config::GetAppSettingByKey("default_view") . ".php";
     }
 }

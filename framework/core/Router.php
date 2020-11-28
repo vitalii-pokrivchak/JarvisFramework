@@ -2,19 +2,21 @@
 
 namespace jarvis\core;
 
+use jarvis\config\Config;
+
 class Router
 {
-    private Request $request;
-    public function __construct(Request $request)
+    private array $app_settings;
+    public function __construct()
     {
-        $this->request = $request;
+        $this->app_settings = Config::GetAppSettings();
     }
     public function run()
     {
-        $default_controller = CONTROLLERS_NAMESPACE . DEFAULT_CONTROLLER;
-        $default_action = DEFAULT_ACTION;
-        $default_query_method = DEFAULT_QUERY_METHOD;
-        $url = $this->request->get_request_uri();
+        $default_controller = $this->app_settings['controllers_namespace'] . $this->app_settings['default_controller'];
+        $default_action = $this->app_settings['default_action'];
+        $default_query_method = $this->app_settings['default_query_method'];
+        $url = Request::get_request_uri();
         if (count($url) == 0) {
             $home = new $default_controller;
             if (method_exists($home, $default_action)) {
@@ -23,7 +25,7 @@ class Router
         } else {
             $controller = $url[0];
             $controller[0] = strtoupper($controller[0]);
-            $classname = CONTROLLERS_NAMESPACE . $controller . "Controller";
+            $classname = $this->app_settings['controllers_namespace'] . $controller . "Controller";
             if (class_exists($classname)) {
                 $class = new $classname;
                 if (count($url) > 1) {
@@ -36,7 +38,7 @@ class Router
                             $class->$default_query_method($param);
                         } else {
                             http_response_code(404);
-                            require_once NOT_FOUND_PAGE;
+                            require_once $this->app_settings['not_found_page'];
                         }
                     }
                 } else {
@@ -44,12 +46,12 @@ class Router
                         $class->$default_action();
                     } else {
                         http_response_code(404);
-                        require_once NOT_FOUND_PAGE;
+                        require_once $this->app_settings['not_found_page'];
                     }
                 }
             } else {
                 http_response_code(404);
-                require_once NOT_FOUND_PAGE;
+                require_once $this->app_settings['not_found_page'];
             }
         }
     }
