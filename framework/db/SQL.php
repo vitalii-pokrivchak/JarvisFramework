@@ -7,12 +7,21 @@
 namespace jarvis\db;
 
 use jarvis\models\ModelObject;
+use jarvis\config\Config;
 
 class SQL implements ISQL
 {
+
     public static function select(string $table, string $condition = null, string $classname = null): ?array
     {
-        $connection = new Database(DB_DRIVER, DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASSWORD);
+        $connection = new Database(
+            Config::GetDatabaseSettingByKey("driver"),
+            Config::GetDatabaseSettingByKey("host"),
+            Config::GetDatabaseSettingByKey("name"),
+            Config::GetDatabaseSettingByKey("port"),
+            Config::GetDatabaseSettingByKey("user"),
+            Config::GetDatabaseSettingByKey("password")
+        );
         $query = $condition ? "SELECT * FROM $table WHERE $condition" : "SELECT * FROM $table";
         $connection->beginTransaction();
         $sql = $connection->query($query);
@@ -25,7 +34,14 @@ class SQL implements ISQL
 
     public static function insert(string $table, ModelObject $model)
     {
-        $connection = new Database(DB_DRIVER, DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASSWORD);
+        $connection = new Database(
+            Config::GetDatabaseSettingByKey("driver"),
+            Config::GetDatabaseSettingByKey("host"),
+            Config::GetDatabaseSettingByKey("name"),
+            Config::GetDatabaseSettingByKey("port"),
+            Config::GetDatabaseSettingByKey("user"),
+            Config::GetDatabaseSettingByKey("password")
+        );
         $values = $model->GetAllData();
         $sqlQuery = sprintf(
             'INSERT INTO ' . $table . ' (%s) VALUES ("%s")',
