@@ -57,6 +57,12 @@ class FileWritter
                         return false;
                     }
                 }
+            } else {
+                if ($append) {
+                    file_put_contents($file->GetFileName(), $content, FILE_APPEND);
+                } else {
+                    file_put_contents($file->GetAbsolutePath(), $content);
+                }
             }
         } else {
             return false;
