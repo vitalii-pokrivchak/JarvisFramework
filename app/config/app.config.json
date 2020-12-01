@@ -9,6 +9,7 @@
   },
 
   "app_settings": {
+    "root_folder": "app/",
     "app_name": "Jarvis Framework",
     "views_path": "./app/views/",
     "templates_path": "./app/views/templates/",

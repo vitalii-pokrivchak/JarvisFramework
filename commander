@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use jarvis\commands\Commander;
+
+$commander = new Commander();
+$cmd = fopen("php://stdin", "r");
+if (array_key_exists(1, $argv)) {
+    if ($argv[1] === "create:controller") {
+        echo "Example: MyController\n";
+        echo "Enter Controller Name : \n";
+        $controller_name = trim(fgets($cmd, 4096));
+        if ($controller_name != false) {
+            $commander->CreateController($controller_name);
+        } else {
+            $commander->CreateController("MyController");
+        }
+    } else if ($argv[1] === "create:model") {
+        echo "Example : MyModel\n";
+        echo "Enter Model Name : \n";
+        $model_name = trim(fgets($cmd, 4096));
+        if ($model_name != false) {
+            $commander->CreateModel($model_name);
+        } else {
+            $commander->CreateModel('MyModel');
+        }
+    } else {
+        echo "Invalid command\n";
+        echo "Goodbye :)\n";
+        exit;
+    }
+} else {
+    echo "Invalid Command\n";
+    exit;
+}
