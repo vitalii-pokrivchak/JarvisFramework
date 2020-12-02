@@ -2,8 +2,6 @@
 
 namespace jarvis\storage;
 
-use Exception;
-
 class FileReader
 {
 
