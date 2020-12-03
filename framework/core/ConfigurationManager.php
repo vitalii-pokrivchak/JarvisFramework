@@ -5,6 +5,7 @@ namespace jarvis\core;
 use jarvis\storage\FileReader;
 use jarvis\storage\Storage;
 use jarvis\config\Config;
+use jarvis\storage\FileManager;
 
 class ConfigurationManager
 {
@@ -15,11 +16,15 @@ class ConfigurationManager
         if ($config != null) {
             $storage = new Storage($this->config_path);
             $file = $storage->GetFile($config);
-            Config::SetConfiguration(FileReader::Read($file));
+            if ($file != false) {
+                Config::SetConfiguration(FileManager::Read($file));
+            }
         } else {
             $storage = new Storage($this->config_path);
             $file = $storage->GetFile($this->config);
-            Config::SetConfiguration(FileReader::Read($file));
+            if ($file != false) {
+                Config::SetConfiguration(FileManager::Read($file));
+            }
         }
     }
 }

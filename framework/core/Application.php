@@ -2,11 +2,13 @@
 
 namespace jarvis\core;
 
+
 class Application
 {
     private Router $router;
     private ConfigurationManager $cm;
-    public function __construct(ConfigurationManager $cm = null)
+    private static $instance;
+    private function __construct(ConfigurationManager $cm = null)
     {
         if ($cm != null) {
             $this->cm = $cm;
@@ -14,6 +16,19 @@ class Application
             $this->cm = new ConfigurationManager();
         }
         $this->router = new Router();
+        $this->router->run();
+    }
+    public static function getInstance()
+    {
+        if (empty(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    public function SetConfiguration(ConfigurationManager $cm)
+    {
+        $this->cm = $cm;
+        $this->router = new Router;
         $this->router->run();
     }
 }

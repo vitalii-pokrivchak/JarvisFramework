@@ -4,7 +4,7 @@ namespace jarvis\commands;
 
 use jarvis\config\Config;
 use jarvis\core\ConfigurationManager;
-use jarvis\storage\FileWritter;
+use jarvis\storage\FileManager;
 use jarvis\storage\Storage;
 
 class Commander implements ICommand
@@ -15,6 +15,12 @@ class Commander implements ICommand
         new ConfigurationManager();
         $this->app_folder = Config::GetAppSettingByKey('root_folder');
     }
+    /**
+     * GetControllerTemplate
+     *
+     * @param  mixed $controller_name
+     * @return string
+     */
     public function GetControllerTemplate($controller_name): string
     {
         $namespace = Config::GetAppSettingByKey('root_namespace') . "controllers";
@@ -40,6 +46,12 @@ class Commander implements ICommand
         }
         PHP;
     }
+    /**
+     * GetModelTemplate
+     *
+     * @param  mixed $model_name
+     * @return string
+     */
     public function GetModelTemplate($model_name): string
     {
         $namespace = Config::GetAppSettingByKey('root_namespace') . "models";
@@ -74,7 +86,13 @@ class Commander implements ICommand
         PHP;
     }
 
-    public function CreateController($controller_name)
+    /**
+     * CreateController
+     *
+     * @param  mixed $controller_name
+     * @return void
+     */
+    public function CreateController($controller_name): bool
     {
         $file = $this->app_folder . "controllers/" . $controller_name . ".php";
         if (!file_exists($this->app_folder . "controllers/")) {
@@ -82,24 +100,30 @@ class Commander implements ICommand
                 if (touch($file)) {
                     $storage = new Storage($this->app_folder . "controllers/");
                     $created_file = $storage->GetFile($controller_name . ".php");
-                    FileWritter::Write($created_file, $this->GetControllerTemplate($controller_name));
+                    return FileManager::Write($created_file, $this->GetControllerTemplate($controller_name));
                 } else {
-                    echo "error while creating controller";
+                    return false;
                 }
             } else {
-                echo "Cannot create folder";
+                return false;
             }
         } else {
             if (touch($file)) {
                 $storage = new Storage($this->app_folder . "controllers/");
                 $created_file = $storage->GetFile($controller_name . ".php");
-                FileWritter::Write($created_file, $this->GetControllerTemplate($controller_name));
+                return FileManager::Write($created_file, $this->GetControllerTemplate($controller_name));
             } else {
-                echo "error while creating controller";
+                return false;
             }
         }
     }
-    public function CreateModel($model_name)
+    /**
+     * CreateModel
+     *
+     * @param  mixed $model_name
+     * @return void
+     */
+    public function CreateModel($model_name): bool
     {
         $file = $this->app_folder . "models/" . $model_name . ".php";
         if (!file_exists($this->app_folder . "models/")) {
@@ -107,18 +131,26 @@ class Commander implements ICommand
             if (touch($file)) {
                 $storage = new Storage($this->app_folder . "models/");
                 $created_file = $storage->GetFile($model_name . ".php");
-                FileWritter::Write($created_file, $this->GetModelTemplate($model_name));
+                return FileManager::Write($created_file, $this->GetModelTemplate($model_name));
             } else {
-                echo "error while creating model";
+                return false;
             }
         } else {
             if (touch($file)) {
                 $storage = new Storage($this->app_folder . "models/");
                 $created_file = $storage->GetFile($model_name . ".php");
-                FileWritter::Write($created_file, $this->GetModelTemplate($model_name));
+                return FileManager::Write($created_file, $this->GetModelTemplate($model_name));
             } else {
-                echo "error while creating model";
+                return false;
             }
         }
+    }
+
+    public function GetAllCommands(): array
+    {
+        return array(
+            'create:controller' => 'Create base Controller',
+            'create:model' => 'Create base Model'
+        );
     }
 }
