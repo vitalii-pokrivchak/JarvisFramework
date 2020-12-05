@@ -2,7 +2,6 @@
 
 namespace jarvis\core;
 
-use app\models\Model;
 use jarvis\models\ModelObject;
 
 class BundleCollection

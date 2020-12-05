@@ -2,7 +2,6 @@
 
 namespace jarvis\core;
 
-use jarvis\storage\FileReader;
 use jarvis\storage\Storage;
 use jarvis\config\Config;
 use jarvis\storage\FileManager;
