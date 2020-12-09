@@ -52,26 +52,27 @@ class Commander implements ICommand
      * @param  mixed $model_name
      * @return string
      */
-    public function GetModelTemplate($model_name): string
+    public function GetModelControllerTemplate($model_controller_name, $model_name): string
     {
         $namespace = Config::GetAppSettingByKey('root_namespace') . "models";
+        $table = strtolower($model_name);
         return <<<PHP
         <?php
 
         namespace $namespace;
 
+        use jarvis\db\SQL;
         use jarvis\models\Model;
-        use jarvis\models\ModelObject;
 
-        class $model_name extends Model
+        class $model_controller_name extends Model
         {
             public function get_all(): array
             {
-                return array();
+                return SQL::select('$table',null,$model_name::class);
             }
-            public function get(int \$id): ModelObject
+            public function get(int \$id): $model_name
             {
-                return new ModelObject;
+                return SQL::select('$table',"id = \$id",$model_name::class)[0];
             }
             public function write()
             {
@@ -81,6 +82,27 @@ class Commander implements ICommand
             }
             public function delete()
             {
+            }
+        }
+        PHP;
+    }
+
+    public function GetModelTemplate(string $model_name)
+    {
+        $namespace = Config::GetAppSettingByKey('root_namespace') . "models";
+        return <<<PHP
+        <?php
+
+        namespace $namespace;
+
+        use jarvis\models\ModelObject;
+
+        class $model_name extends ModelObject
+        {
+            
+            public function GetAllData():array
+            {
+                return array();
             }
         }
         PHP;
@@ -125,21 +147,28 @@ class Commander implements ICommand
      */
     public function CreateModel($model_name): bool
     {
-        $file = $this->app_folder . "models/" . $model_name . ".php";
+        $model_controller_file = $this->app_folder . "models/" . $model_name . "Model" . ".php";
+        $model_file = $this->app_folder . "models/" . $model_name . ".php";
         if (!file_exists($this->app_folder . "models/")) {
             mkdir($this->app_folder . "models/");
-            if (touch($file)) {
+            if (touch($model_controller_file) && touch($model_file)) {
                 $storage = new Storage($this->app_folder . "models/");
-                $created_file = $storage->GetFile($model_name . ".php");
-                return FileManager::Write($created_file, $this->GetModelTemplate($model_name));
+                $created_model_controller_file = $storage->GetFile($model_name . "Model" . ".php");
+                $created_model_file = $storage->GetFile($model_name . ".php");
+                if ((FileManager::Write($created_model_controller_file, $this->GetModelControllerTemplate($model_name . "Model", $model_name))) && (FileManager::Write($created_model_file, $this->GetModelTemplate($model_name)))) {
+                    return true;
+                }
             } else {
                 return false;
             }
         } else {
-            if (touch($file)) {
+            if (touch($model_controller_file)) {
                 $storage = new Storage($this->app_folder . "models/");
-                $created_file = $storage->GetFile($model_name . ".php");
-                return FileManager::Write($created_file, $this->GetModelTemplate($model_name));
+                $created_model_controller_file = $storage->GetFile($model_name . "Model" . ".php");
+                $created_model_file = $storage->GetFile($model_name . ".php");
+                if ((FileManager::Write($created_model_controller_file, $this->GetModelControllerTemplate($model_name . "Model", $model_name))) && (FileManager::Write($created_model_file, $this->GetModelTemplate($model_name)))) {
+                    return true;
+                }
             } else {
                 return false;
             }
