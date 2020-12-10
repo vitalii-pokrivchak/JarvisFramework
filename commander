@@ -9,7 +9,7 @@ $commands = [
 
 if (array_key_exists(1, $argv)) {
     if ($argv[1] === "setup") {
-        system('composer install && npm install && npm run dev && php -S localhost:8000');
+        system('composer install && npm install -g postcss-cli && npm install && npm run dev && php -S localhost:8000');
     } else if ($argv[1] === "run") {
         system('php -S localhost:8000');
     } else if ($argv[1] === "help") {
