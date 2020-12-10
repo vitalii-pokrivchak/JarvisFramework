@@ -38,9 +38,9 @@
 
 - ~~Add **help** command~~
 
-- Add **run:server** command
+- ~~Add **run:server** command~~
 
-- Add **init** command
+- ~~Add **setup** command~~
 
 - Add **view:logs** command
 
