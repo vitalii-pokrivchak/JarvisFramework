@@ -1,6 +1,7 @@
 {
   "name": "jarvis-technologies/jarvis-framework",
   "type": "project",
+  "description": "This is a most modern PHP Framework with MVC Architecture",
   "require": {
     "fzaninotto/faker": "^1.9"
   },
