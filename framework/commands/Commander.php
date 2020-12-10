@@ -174,12 +174,4 @@ class Commander implements ICommand
             }
         }
     }
-
-    public function GetAllCommands(): array
-    {
-        return array(
-            'create:controller' => 'Create base Controller',
-            'create:model' => 'Create base Model'
-        );
-    }
 }

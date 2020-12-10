@@ -1,53 +1,62 @@
 #!/usr/bin/env php
 <?php
+$commands = [
+    'create:controller' => 'Create base Controller',
+    'create:model' => 'Create base Model',
+    "run" => "Run PHP Development Server",
+    "setup" => "Installing project dependencies \n\tGenerate Autoloading\n\tGenerate CSS Files\n\tRun Server\n\tAnd More.."
+];
 
-require_once 'vendor/autoload.php';
-
-use jarvis\commands\Commander;
-
-$commander = new Commander();
 if (array_key_exists(1, $argv)) {
-    if ($argv[1] === "create:controller") {
-        if (array_key_exists(2, $argv)) {
-            $res = $commander->CreateController(trim($argv[2]));
-            if ($res) {
-                echo "Controller {$argv[2]} has been successfully created :)\n";
-            } else {
-                echo "Controller {$argv[2]} not created . Unknown error\n";
-            }
-        } else {
-            $res = $commander->CreateController("MyController");
-            if ($res) {
-                echo "Controller MyController by default has been successfully created :)\n";
-            } else {
-                echo "Controller MyController not created . Unknown error\n";
-            }
-        }
-    } else if ($argv[1] === "create:model") {
-        if (array_key_exists(2, $argv)) {
-            $res = $commander->CreateModel(trim($argv[2]));
-            if ($res) {
-                echo "Model {$argv[2]} has been successfully created :)\n";
-            } else {
-                echo "Model {$argv[2]} not created . Unknown error!!!\n";
-            }
-        } else {
-            $res = $commander->CreateModel("MyModel");
-            if ($res) {
-                echo "Model MyModel by default has been successfully created :)\n";
-            } else {
-                echo "Model MyModel not created . Unknown error\n";
-            }
-        }
+    if ($argv[1] === "setup") {
+        system('composer install && npm install && npm run dev && php -S localhost:8000');
+    } else if ($argv[1] === "run") {
+        system('php -S localhost:8000');
     } else if ($argv[1] === "help") {
-        foreach ($commander->GetAllCommands() as $command => $description) {
+        foreach ($commands as $command => $description) {
             echo "\n{$command} : {$description}\n";
             echo "_____________________________________________________________\n";
         }
     } else {
-        echo "Invalid command\n";
-        echo "Goodbye :)\n";
-        exit;
+        require_once 'vendor/autoload.php';
+        $commander = new \jarvis\commands\Commander();
+        if ($argv[1] === "create:controller") {
+            if (array_key_exists(2, $argv)) {
+                $res = $commander->CreateController(trim($argv[2]));
+                if ($res) {
+                    echo "Controller {$argv[2]} has been successfully created :)\n";
+                } else {
+                    echo "Controller {$argv[2]} not created . Unknown error\n";
+                }
+            } else {
+                $res = $commander->CreateController("MyController");
+                if ($res) {
+                    echo "Controller MyController by default has been successfully created :)\n";
+                } else {
+                    echo "Controller MyController not created . Unknown error\n";
+                }
+            }
+        } else if ($argv[1] === "create:model") {
+            if (array_key_exists(2, $argv)) {
+                $res = $commander->CreateModel(trim($argv[2]));
+                if ($res) {
+                    echo "Model {$argv[2]} has been successfully created :)\n";
+                } else {
+                    echo "Model {$argv[2]} not created . Unknown error!!!\n";
+                }
+            } else {
+                $res = $commander->CreateModel("MyModel");
+                if ($res) {
+                    echo "Model MyModel by default has been successfully created :)\n";
+                } else {
+                    echo "Model MyModel not created . Unknown error\n";
+                }
+            }
+        } else {
+            echo "Invalid command\n";
+            echo "Goodbye :)\n";
+            exit;
+        }
     }
 } else {
     echo "Invalid Command\n";
