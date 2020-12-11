@@ -2,6 +2,8 @@
 
 namespace Jarvis\Router;
 
+use Jarvis\Config\Config;
+
 /**
  * class Url presents parsing url to (controller , action , parameters)
  */
@@ -37,7 +39,7 @@ class Url
     {
         $this->url = $url;
         $this->parameters = $parameters;
-        $parsed_url = explode('::', $this->url);
+        $parsed_url = explode('->', $this->url);
         $this->controller = $parsed_url[0];
         $this->action = $parsed_url[1];
     }
@@ -49,7 +51,7 @@ class Url
      */
     public function GetController(): string
     {
-        return $this->controller;
+        return Config::GetAppSettingByKey('Controllers_Namespace') . $this->controller;
     }
 
 

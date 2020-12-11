@@ -58,9 +58,8 @@ class Response
     {
         $this->status_code = $status_code;
         if ($this->status_code === StatusCode::NOT_FOUND) {
-            echo "not found";
             http_response_code($this->status_code);
-            require_once './app/views/404.php';
+            require_once './App/Views/404.php';
         } else {
             http_response_code($this->status_code);
         }
@@ -94,5 +93,16 @@ class Response
     public function GetHost()
     {
         return $this->host;
+    }
+
+    /**
+     * Redirect To Url
+     *
+     * @param string $url
+     * @return void
+     */
+    public function Redirect($url)
+    {
+        header("Location: {$url}");
     }
 }
