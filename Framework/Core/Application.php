@@ -2,6 +2,7 @@
 
 namespace Jarvis\Core;
 
+use Jarvis\Router\Response;
 use Jarvis\Router\Router;
 
 class Application

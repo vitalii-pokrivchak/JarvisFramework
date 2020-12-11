@@ -19,7 +19,7 @@ if (array_key_exists(1, $argv)) {
         }
     } else {
         require_once 'vendor/autoload.php';
-        $commander = new \jarvis\commands\Commander();
+        $commander = new \Jarvis\Commands\Commander();
         if ($argv[1] === "create:controller") {
             if (array_key_exists(2, $argv)) {
                 $res = $commander->CreateController(trim($argv[2]));

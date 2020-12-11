@@ -25,7 +25,6 @@ class Response
      */
     private $status_code;
 
-
     /**
      * __construct
      *
@@ -94,16 +93,5 @@ class Response
     public function GetHost()
     {
         return $this->host;
-    }
-
-    /**
-     * Redirect To Url
-     *
-     * @param string $url
-     * @return void
-     */
-    public function Redirect($url)
-    {
-        header("Location: {$url}");
     }
 }
