@@ -2,6 +2,7 @@
 
 namespace Jarvis\Router;
 
+use Jarvis\Config\Config;
 use Jarvis\Router\Helpers\ContentType;
 use Jarvis\Router\Helpers\StatusCode;
 
@@ -59,7 +60,7 @@ class Response
         $this->status_code = $status_code;
         if ($this->status_code === StatusCode::NOT_FOUND) {
             http_response_code($this->status_code);
-            require_once './App/Views/404.php';
+            require_once Config::GetAppSettingByKey('Not_Found_Page');
         } else {
             http_response_code($this->status_code);
         }
