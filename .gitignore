@@ -1,5 +1,5 @@
 /vendor/*
 /node_modules/*
-/app/public/app.css
+/App/Public/App.css
 package-lock.json
 composer.lock

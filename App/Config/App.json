@@ -1,0 +1,26 @@
+{
+  "Database": {
+    "Driver": "mysql",
+    "Host": "localhost",
+    "Name": "bookstore",
+    "User": "root",
+    "Password": "root",
+    "Port": "3306"
+  },
+
+  "Settings": {
+    "Root_Folder": "App/",
+    "App_Name": "Jarvis Framework",
+    "Views_Path": "./App/Views/",
+    "Templates_Path": "./App/Views/Templates/",
+    "Default_Controller": "HomeController",
+    "Default_Action": "index",
+    "Default_Get_Method": "get",
+    "Default_Post_Method": "post",
+    "Default_View": "MasterView",
+    "Root_Namespace": "App\\",
+    "Controllers_Namespace": "App\\Controllers\\",
+    "Models_Namespace": "App\\Models\\",
+    "Not_Found_Page": "./App/Views/404.php"
+  }
+}

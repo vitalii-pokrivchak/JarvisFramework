@@ -14,8 +14,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "jarvis\\": "framework/",
-      "app\\": "app/"
+      "Jarvis\\": "Framework/",
+      "App\\": "App/"
     }
   }
 }
