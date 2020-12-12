@@ -7,7 +7,6 @@ use Jarvis\Core\Bundle;
 
 abstract class Controller
 {
-    public abstract function index();
     public function render(Bundle $bundle = null)
     {
         if ($bundle != null) {
