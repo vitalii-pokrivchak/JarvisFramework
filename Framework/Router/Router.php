@@ -29,11 +29,18 @@ class Router
     private $response;
 
 
-    public function __construct()
+    /**
+     * __construct
+     *
+     * @param  Request $request
+     * @param  Response $response
+     * @return void
+     */
+    public function __construct($request, $response)
     {
         $this->routes = Route::GetRoutes();
-        $this->request = new Request;
-        $this->response = new Response;
+        $this->request = $request;
+        $this->response = $response;
     }
 
     /**
@@ -54,7 +61,7 @@ class Router
                         $controllerName =  $route->GetController();
                         $actionName = $route->GetAction();
                         $controller = new $controllerName;
-                        $controller->$actionName();
+                        $controller->$actionName($this->response);
                     } else {
                         $this->response->SetStatusCode(StatusCode::NOT_FOUND);
                     }
@@ -71,7 +78,7 @@ class Router
                         $controllerName =  $route->GetController();
                         $actionName = $route->GetAction();
                         $controller = new $controllerName;
-                        $controller->$actionName();
+                        $controller->$actionName($this->response);
                     } else {
                         $this->response->SetStatusCode(StatusCode::NOT_FOUND);
                     }
@@ -81,8 +88,6 @@ class Router
             }
         }
     }
-
-
     /**
      * CheckController
      *

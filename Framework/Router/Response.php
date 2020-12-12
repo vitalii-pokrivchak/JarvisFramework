@@ -94,4 +94,16 @@ class Response
     {
         return $this->host;
     }
+
+
+    /**
+     * Redirect
+     *
+     * @param  string $url
+     * @return void
+     */
+    public function Redirect($url)
+    {
+        header("Location: $url");
+    }
 }
