@@ -2,23 +2,71 @@
 
 namespace Jarvis\Core;
 
+use Jarvis\Router\Request;
+use Jarvis\Router\Response;
 use Jarvis\Router\Router;
 
 class Application
 {
-    private Router $router;
-    private ConfigurationManager $cm;
+    /**
+     * Router
+     *
+     * @var Router
+     */
+    private $router;
+
+    /**
+     * Configuration Manager
+     *
+     * @var ConfigurationManager
+     */
+    private $configuration;
+
+    /**
+     * Request
+     *
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * Response
+     *
+     * @var Response
+     */
+    private $response;
+
+    /**
+     * Instance of Application
+     *
+     * @var Application
+     */
     private static $instance;
+
+
+    /**
+     * __construct
+     *
+     * @param  ?ConfigurationManager $cm
+     * @return void
+     */
     private function __construct(ConfigurationManager $cm = null)
     {
         if ($cm != null) {
-            $this->cm = $cm;
+            $this->configuration = $cm;
         } else {
-            $this->cm = new ConfigurationManager();
+            $this->configuration = new ConfigurationManager();
         }
-        $this->router = new Router();
+        $this->request = new Request;
+        $this->response = new Response;
+        $this->router = new Router($this->request, $this->response);
         $this->router->run();
     }
+    /**
+     * Get Instance of Application
+     *
+     * @return void
+     */
     public static function getInstance()
     {
         if (empty(self::$instance)) {
@@ -26,10 +74,16 @@ class Application
         }
         return self::$instance;
     }
+    /**
+     * SetConfiguration
+     *
+     * @param  ConfigurationManager $cm
+     * @return void
+     */
     public function SetConfiguration(ConfigurationManager $cm)
     {
-        $this->cm = $cm;
-        $this->router = new Router;
+        $this->configuration = $cm;
+        $this->router = new Router($this->request, $this->response);
         $this->router->run();
     }
 }
