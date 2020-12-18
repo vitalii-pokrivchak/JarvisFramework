@@ -3,5 +3,6 @@
 - ## ~~Make **Request** class~~
 - ## ~~Make **Response** class~~
 - ## ~~Make **Router Architecture**~~
-- ## Try Integrate **Blade Templates Engine**
+- ## Integrate **Blade Templates Engine** (<span style="color:yellow;font-weight:bold">important</span>)
+- ## Refactor Commander to Symfony Console System (<span style="color:yellow;font-weight:bold">important</span>)
 - ## Make `Simplify ORM` (<span style="color:yellow;font-weight:bold">important</span>)

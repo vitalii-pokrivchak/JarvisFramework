@@ -3,7 +3,8 @@
   "type": "project",
   "description": "This is a most modern PHP Framework with MVC Architecture",
   "require": {
-    "fzaninotto/faker": "^1.9"
+    "fzaninotto/faker": "^1.9",
+    "jenssegers/blade": "^1.4"
   },
   "license": "MIT",
   "authors": [

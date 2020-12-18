@@ -2,8 +2,10 @@
 
 namespace Jarvis\Router;
 
+use Jarvis\Config\Config;
 use Jarvis\Router\Helpers\RequestMethod;
 use Jarvis\Router\Helpers\StatusCode;
+use Jenssegers\Blade\Blade;
 
 class Router
 {
@@ -28,6 +30,12 @@ class Router
      */
     private $response;
 
+    /**
+     * blade
+     *
+     * @var Blade
+     */
+    private $blade;
 
     /**
      * __construct
@@ -41,6 +49,10 @@ class Router
         $this->routes = Route::GetRoutes();
         $this->request = $request;
         $this->response = $response;
+        $this->blade = new Blade(
+            Config::GetAppSettingByKey('Views_Path'),
+            Config::GetAppSettingByKey('Cache_Path')
+        );
     }
 
     /**
@@ -64,9 +76,17 @@ class Router
                         $controller->$actionName($this->response);
                     } else {
                         $this->response->SetStatusCode(StatusCode::NOT_FOUND);
+                        echo $this->blade->make(Config::GetAppSettingByKey('Default_View'), [
+                            'title' => '404.Not found',
+                            'view' => Config::GetAppSettingByKey('Not_Found_Page')
+                        ])->render();
                     }
                 } else {
                     $this->response->SetStatusCode(StatusCode::NOT_FOUND);
+                    echo $this->blade->make(Config::GetAppSettingByKey('Default_View'), [
+                        'title' => '404.Not found',
+                        'view' => Config::GetAppSettingByKey('Not_Found_Page')
+                    ])->render();
                 }
             } else if ($this->request->GetRequestMethod() == RequestMethod::POST) {
                 if (array_key_exists($this->request->GetUri(), $this->routes[RequestMethod::POST])) {
@@ -81,9 +101,17 @@ class Router
                         $controller->$actionName($this->response);
                     } else {
                         $this->response->SetStatusCode(StatusCode::NOT_FOUND);
+                        echo $this->blade->make(Config::GetAppSettingByKey('Default_View'), [
+                            'title' => '404.Not found',
+                            'view' => Config::GetAppSettingByKey('Not_Found_Page')
+                        ])->render();
                     }
                 } else {
                     $this->response->SetStatusCode(StatusCode::NOT_FOUND);
+                    echo $this->blade->make(Config::GetAppSettingByKey('Default_View'), [
+                        'title' => '404.Not found',
+                        'view' => Config::GetAppSettingByKey('Not_Found_Page')
+                    ])->render();
                 }
             }
         }
