@@ -12,11 +12,12 @@
     "Root_Folder": "App/",
     "App_Name": "Jarvis Framework",
     "Views_Path": "./App/Views/",
+    "Cache_Path": "./App/Cache",
     "Templates_Path": "./App/Views/Templates/",
     "Default_View": "MasterView",
     "Root_Namespace": "App\\",
     "Controllers_Namespace": "App\\Controllers\\",
     "Models_Namespace": "App\\Models\\",
-    "Not_Found_Page": "./App/Views/404.php"
+    "Not_Found_Page": "404"
   }
 }

@@ -2,9 +2,11 @@
 
 namespace Jarvis\Core;
 
+use Jarvis\Config\Config;
 use Jarvis\Router\Request;
 use Jarvis\Router\Response;
 use Jarvis\Router\Router;
+use Jenssegers\Blade\Blade;
 
 class Application
 {
@@ -57,6 +59,7 @@ class Application
         } else {
             $this->configuration = new ConfigurationManager();
         }
+
         $this->request = new Request;
         $this->response = new Response;
         $this->router = new Router($this->request, $this->response);

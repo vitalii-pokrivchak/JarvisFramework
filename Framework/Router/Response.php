@@ -57,12 +57,6 @@ class Response
     public function SetStatusCode(int $status_code)
     {
         $this->status_code = $status_code;
-        if ($this->status_code === StatusCode::NOT_FOUND) {
-            http_response_code($this->status_code);
-            require_once Config::GetAppSettingByKey('Not_Found_Page');
-        } else {
-            http_response_code($this->status_code);
-        }
     }
 
     /**
