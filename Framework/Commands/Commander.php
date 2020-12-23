@@ -56,6 +56,7 @@ class Commander implements ICommand
     {
         $namespace = Config::GetAppSettingByKey('Root_Namespace') . "Models\Controllers";
         $model_namespace = Config::GetAppSettingByKey('Models_Namespace') . $model_name;
+        $model = strtolower($model_name);
         return <<<PHP
         <?php
 
@@ -68,23 +69,23 @@ class Commander implements ICommand
         {
             public static function All()
             {
-                return SQL::Select(User::class);
+                return SQL::Select($model_name::class);
             }
             public static function Get(\$id)
             {
-                return SQL::Select(User::class, "WHERE id = \$id");
+                return SQL::Select($model_name::class, "WHERE id = \$id");
             }
-            public static function Add(User \$user)
+            public static function Add($model_name \${$model})
             {
-                return SQL::Insert(\$user);
+                return SQL::Insert(\${$model});
             }
-            public static function Update(\$id, User \$user)
+            public static function Update(\$id, $model_name \${$model})
             {
-                return SQL::Update(\$id, User::class);
+                return SQL::Update(\$id, $model_name::class);
             }
-            public static function Delete(User \$user)
+            public static function Delete($model_name \${$model})
             {
-                return SQL::Delete(\$user->id, User::class);
+                return SQL::Delete(\${$model}->id, $model_name::class);
             }
         }
         PHP;

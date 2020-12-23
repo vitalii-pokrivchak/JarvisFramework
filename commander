@@ -52,7 +52,7 @@ if (array_key_exists(1, $argv)) {
                 }
             } else {
                 $model = $commander->CreateModel("MyModel");
-                $modelController = $commander->CreateModelController("MyModelController");
+                $modelController = $commander->CreateModelController("MyModel");
                 if ($model && $modelController) {
                     echo "\033[32m\u{25C6} Model MyModel and MyModelController by default has been successfully created :)\033[0m\n";
                 } else {
