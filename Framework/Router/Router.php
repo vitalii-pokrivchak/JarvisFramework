@@ -97,7 +97,22 @@ class Router
                         $controllerName =  $route->GetController();
                         $actionName = $route->GetAction();
                         $controller = new $controllerName;
-                        $controller->$actionName($parameters, $this->response);
+                        if (is_array($parameters) && count($parameters) > 0) {
+                            $reflection = new \ReflectionMethod($controllerName, $actionName);
+                            if (count($reflection->getParameters()) === 1) {
+                                $controller->$actionName($parameters);
+                            } else {
+                                $controller->$actionName($parameters, $this->response);
+                            }
+                        } else if ((!is_array($parameters)) && ($parameters != "")) {
+                            $reflection = new \ReflectionMethod($controllerName, $actionName);
+                            if (count($reflection->getParameters()) === 1) {
+                                $controller->$actionName($parameters);
+                            } else {
+                                $controller->$actionName($parameters, $this->response);
+                            }
+                        }
+                        $controller->$actionName($this->response);
                     } else {
                         $this->response->SetStatusCode(StatusCode::NOT_FOUND);
                         echo $this->blade->make(Config::GetAppSettingByKey('Default_View'), [
