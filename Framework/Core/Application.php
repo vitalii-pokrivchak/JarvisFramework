@@ -2,11 +2,9 @@
 
 namespace Jarvis\Core;
 
-use Jarvis\Config\Config;
 use Jarvis\Router\Request;
 use Jarvis\Router\Response;
 use Jarvis\Router\Router;
-use Jenssegers\Blade\Blade;
 
 class Application
 {

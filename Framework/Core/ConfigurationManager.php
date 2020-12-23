@@ -2,9 +2,9 @@
 
 namespace Jarvis\Core;
 
-use Jarvis\Storage\Storage;
+use Jarvis\FS\Storage;
 use Jarvis\Config\Config;
-use Jarvis\Storage\FileManager;
+use Jarvis\FS\FileManager;
 
 class ConfigurationManager
 {

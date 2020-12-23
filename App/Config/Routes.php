@@ -2,5 +2,5 @@
 
 use Jarvis\Router\Route;
 
-Route::GET('/', 'HomeController->index');
-Route::GET('/home', 'HomeController->index');
+Route::GET('/', 'HomeController->index', ['lang', 'id']);
+Route::GET('/home', 'HomeController->index', ['lang', 'id']);

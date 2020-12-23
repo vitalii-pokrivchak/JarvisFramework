@@ -1,8 +1,8 @@
 {
   "Database": {
-    "Driver": "mysql",
+    "Provider": "mysql",
     "Host": "localhost",
-    "Name": "bookstore",
+    "Db": "todo",
     "User": "root",
     "Password": "root",
     "Port": "3306"
