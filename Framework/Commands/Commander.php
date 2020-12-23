@@ -67,23 +67,23 @@ class Commander implements ICommand
 
         class $model_controller_name
         {
-            public static function All()
+            public function All()
             {
                 return SQL::Select($model_name::class);
             }
-            public static function Get(\$id)
+            public function Get(\$id)
             {
                 return SQL::Select($model_name::class, "WHERE id = \$id");
             }
-            public static function Add($model_name \${$model})
+            public function Add($model_name \${$model})
             {
                 return SQL::Insert(\${$model});
             }
-            public static function Update(\$id, $model_name \${$model})
+            public function Update(\$id, $model_name \${$model})
             {
                 return SQL::Update(\$id, $model_name::class);
             }
-            public static function Delete($model_name \${$model})
+            public function Delete($model_name \${$model})
             {
                 return SQL::Delete(\${$model}->id, $model_name::class);
             }
