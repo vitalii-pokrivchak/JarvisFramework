@@ -60,7 +60,7 @@ class Router
      *
      * @return void
      */
-    public function Run()
+    public function run()
     {
         if (count($this->routes) > 0) {
             if ($this->request->GetRequestMethod() == RequestMethod::GET) {
@@ -70,10 +70,34 @@ class Router
                         $route->GetController(),
                         $route->GetAction()
                     )) {
+                        $qs = explode('&', $this->request->GetQueryString());
+                        $parsed = [];
+                        foreach ($qs as $q) {
+                            $parsed[] = explode('=', $q);
+                        }
+                        $combined = [];
+                        foreach ($parsed as $value) {
+                            if (array_key_exists($value[0], $combined))
+                                $combined[$value[0]] =  $value[1];
+                        }
+                        $params = $route->GetParameters();
+                        $parameters = [];
+                        if ($params != null) {
+                            if (is_array($params)) {
+                                foreach ($params as $param) {
+                                    if (array_key_exists($param, $combined)) {
+                                        $parameters = $combined;
+                                    }
+                                }
+                            } else {
+                                if (array_key_exists($params, $combined))
+                                    $parameters = $combined[$params];
+                            }
+                        }
                         $controllerName =  $route->GetController();
                         $actionName = $route->GetAction();
                         $controller = new $controllerName;
-                        $controller->$actionName($this->response);
+                        $controller->$actionName($parameters, $this->response);
                     } else {
                         $this->response->SetStatusCode(StatusCode::NOT_FOUND);
                         echo $this->blade->make(Config::GetAppSettingByKey('Default_View'), [
@@ -98,7 +122,16 @@ class Router
                         $controllerName =  $route->GetController();
                         $actionName = $route->GetAction();
                         $controller = new $controllerName;
-                        $controller->$actionName($this->response);
+                        if (count($_POST) > 0) {
+                            $reflection = new \ReflectionMethod($controllerName, $actionName);
+                            if (count($reflection->getParameters()) === 1) {
+                                $controller->$actionName($_POST);
+                            } else {
+                                $controller->$actionName($_POST, $this->response);
+                            }
+                        } else {
+                            $controller->$actionName($this->response);
+                        }
                     } else {
                         $this->response->SetStatusCode(StatusCode::NOT_FOUND);
                         echo $this->blade->make(Config::GetAppSettingByKey('Default_View'), [

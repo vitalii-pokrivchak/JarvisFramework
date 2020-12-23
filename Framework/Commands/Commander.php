@@ -4,8 +4,8 @@ namespace Jarvis\Commands;
 
 use Jarvis\Config\Config;
 use Jarvis\Core\ConfigurationManager;
-use Jarvis\Storage\FileManager;
-use Jarvis\Storage\Storage;
+use Jarvis\FS\FileManager;
+use Jarvis\FS\Storage;
 
 class Commander implements ICommand
 {
@@ -54,34 +54,37 @@ class Commander implements ICommand
      */
     public function GetModelControllerTemplate($model_controller_name, $model_name): string
     {
-        $namespace = Config::GetAppSettingByKey('Root_Namespace') . "Models";
-        $table = strtolower($model_name);
+        $namespace = Config::GetAppSettingByKey('Root_Namespace') . "Models\Controllers";
+        $model_namespace = Config::GetAppSettingByKey('Models_Namespace') . $model_name;
         return <<<PHP
         <?php
 
         namespace $namespace;
 
-        use Jarvis\Db\SQL;
-        use Jarvis\Models\Model;
+        use Jarvis\DB\SQL;
+        use $model_namespace;
 
-        class $model_controller_name extends Model
+        class $model_controller_name
         {
-            public function get_all(): array
+            public static function All()
             {
-                return SQL::select('$table',null,$model_name::class);
+                return SQL::Select(User::class);
             }
-            public function get(int \$id): $model_name
+            public static function Get(\$id)
             {
-                return SQL::select('$table',"id = \$id",$model_name::class)[0];
+                return SQL::Select(User::class, "WHERE id = \$id");
             }
-            public function write()
+            public static function Add(User \$user)
             {
+                return SQL::Insert(\$user);
             }
-            public function update()
+            public static function Update(\$id, User \$user)
             {
+                return SQL::Update(\$id, User::class);
             }
-            public function delete()
+            public static function Delete(User \$user)
             {
+                return SQL::Delete(\$user->id, User::class);
             }
         }
         PHP;
@@ -95,15 +98,9 @@ class Commander implements ICommand
 
         namespace $namespace;
 
-        use Jarvis\Models\ModelObject;
-
-        class $model_name extends ModelObject
+        class $model_name
         {
-            
-            public function GetAllData():array
-            {
-                return array();
-            }
+            public int \$id;
         }
         PHP;
     }
@@ -147,31 +144,103 @@ class Commander implements ICommand
      */
     public function CreateModel($model_name): bool
     {
-        $model_controller_file = $this->app_folder . "Models/" . $model_name . "Model" . ".php";
         $model_file = $this->app_folder . "Models/" . $model_name . ".php";
-        if (!file_exists($this->app_folder . "Models/")) {
-            mkdir($this->app_folder . "Models/");
-            if (touch($model_controller_file) && touch($model_file)) {
-                $storage = new Storage($this->app_folder . "Models/");
-                $created_model_controller_file = $storage->GetFile($model_name . "Model" . ".php");
-                $created_model_file = $storage->GetFile($model_name . ".php");
-                if ((FileManager::Write($created_model_controller_file, $this->GetModelControllerTemplate($model_name . "Model", $model_name))) && (FileManager::Write($created_model_file, $this->GetModelTemplate($model_name)))) {
+        if ($this->CreateFolder($this->app_folder . "Models")) {
+            if ($this->CreateFile($model_file)) {
+                if ($this->WriteContent(
+                    $this->app_folder . "Models/",
+                    $model_name . ".php",
+                    $this->GetModelTemplate($model_name)
+                )) {
                     return true;
+                } else {
+                    return false;
                 }
             } else {
                 return false;
             }
         } else {
-            if (touch($model_controller_file)) {
-                $storage = new Storage($this->app_folder . "Models/");
-                $created_model_controller_file = $storage->GetFile($model_name . "Model" . ".php");
-                $created_model_file = $storage->GetFile($model_name . ".php");
-                if ((FileManager::Write($created_model_controller_file, $this->GetModelControllerTemplate($model_name . "Model", $model_name))) && (FileManager::Write($created_model_file, $this->GetModelTemplate($model_name)))) {
+            if ($this->CreateFile($model_file)) {
+                if ($this->WriteContent(
+                    $this->app_folder . "Models/",
+                    $model_name . ".php",
+                    $this->GetModelTemplate($model_name)
+                )) {
                     return true;
+                } else {
+                    return false;
                 }
             } else {
                 return false;
             }
+        }
+    }
+    public function CreateModelController($model_name): bool
+    {
+        $model_controller_file = $this->app_folder . "Models/Controllers/" . $model_name . "Controller" . ".php";
+        if ($this->CreateFolder($this->app_folder . "Models/Controllers")) {
+            if ($this->CreateFile($model_controller_file)) {
+                if ($this->WriteContent(
+                    $this->app_folder . "Models/Controllers/",
+                    $model_name . "Controller" .  ".php",
+                    $this->GetModelControllerTemplate($model_name . "Controller", $model_name)
+                )) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            if ($this->CreateFile($model_controller_file)) {
+                if ($this->WriteContent(
+                    $this->app_folder . "Models/Controllers",
+                    $model_name . "Controller" . ".php",
+                    $this->GetModelControllerTemplate($model_name . "Controller", $model_name)
+                )) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    private function CreateFolder($path)
+    {
+        if (!file_exists($path)) {
+            mkdir($path);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    private function CreateFile($path)
+    {
+        if (!file_exists($path)) {
+            touch($path);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    private function GetAllFilesFromDirectory($path)
+    {
+        $storage = new Storage($path);
+        return $storage->GetFiles();
+    }
+    private function GetFileFromDirectory($path, $filename)
+    {
+        $storage = new Storage($path);
+        return $storage->GetFile($filename);
+    }
+    private function WriteContent($path, $filename, $content)
+    {
+        $file = $this->GetFileFromDirectory($path, $filename);
+        if ($file != false) {
+            return FileManager::Write($file, $content);
         }
     }
 }

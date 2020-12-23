@@ -40,7 +40,7 @@ class Request
     public function __construct()
     {
         $this->request_method = $_SERVER['REQUEST_METHOD'];
-        $this->uri = $_SERVER['REQUEST_URI'];
+        $this->uri = $_SERVER['PATH_INFO'] ?? "/";
         $this->query_string = $_SERVER['QUERY_STRING'] ?? "";
         $this->port = $_SERVER['SERVER_PORT'];
         $this->origin = $_SERVER['SERVER_NAME'];

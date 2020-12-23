@@ -1,6 +1,6 @@
 <?php
 
-namespace Jarvis\Storage;
+namespace Jarvis\FS;
 
 final class CsvFileManager implements IFileManager
 {

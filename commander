@@ -1,24 +1,26 @@
 #!/usr/bin/env php
 <?php
 $commands = [
-    'create:controller' => 'Create base Controller',
-    'create:model' => 'Create base Model',
-    'purge' => 'Purge unused css classes in views',
-    "run" => "Run PHP Development Server",
-    "setup" => "Installing project dependencies \n\tGenerate Autoloading\n\tGenerate CSS Files\n\tRun Server\n\tAnd More.."
+    "\033[93m\033[22mcreate:controller\033[0m\033[0m" => "\033[32mCreate base Controller\033[0m",
+    "\033[33mcreate:model\033[0m" => "\033[32mCreate base Model\033[0m",
+    "\033[33mpurge\033[0m" => "\033[32mPurge unused css classes in views\033[0m",
+    "\033[33mrun\033[0m" => "\033[32mRun PHP Development Server\033[0m",
+    "\033[33msetup\033[0m" => "\033[32mInstalling project dependencies \n\tGenerate Autoloading\n\tGenerate CSS Files\n\tRun Server\n\tAnd More..\033[0m"
 ];
 
 if (array_key_exists(1, $argv)) {
     if ($argv[1] === "setup") {
+        echo "\033[35mStarting Setup Your WebSite\033[0m\n";
         system('composer install && npm install -g postcss-cli && npm install && npm run dev && php -S localhost:8000');
     } else if ($argv[1] === "run") {
+        echo "\033[32m\u{25C6} \u{2713} Your app has been successfully started on http://localhost:8000\033[0m\n";
+        echo "\033[33m\033[51m\u{25C6} Happy coding \u{1F609}\033[0m\033[0m\n";
         system('php -S localhost:8000');
     } else if ($argv[1] === "purge") {
         system('npm run dev');
     } else if ($argv[1] === "help") {
         foreach ($commands as $command => $description) {
-            echo "\n{$command} : {$description}\n";
-            echo "_____________________________________________________________\n";
+            echo "\n{$command}\t : \t{$description}\n";
         }
     } else {
         require_once 'vendor/autoload.php';
@@ -27,32 +29,34 @@ if (array_key_exists(1, $argv)) {
             if (array_key_exists(2, $argv)) {
                 $res = $commander->CreateController(trim($argv[2]));
                 if ($res) {
-                    echo "Controller {$argv[2]} has been successfully created :)\n";
+                    echo "\033[32m\u{25C6} Controller {$argv[2]} has been successfully created :)\033[0m\n";
                 } else {
-                    echo "Controller {$argv[2]} not created . Unknown error\n";
+                    echo "\033[31m\u{25C6} Controller {$argv[2]} not created . Unknown error\033[0m\n";
                 }
             } else {
                 $res = $commander->CreateController("MyController");
                 if ($res) {
-                    echo "Controller MyController by default has been successfully created :)\n";
+                    echo "\033[32m\u{25C6} Controller MyController by default has been successfully created :)\033[0m\n";
                 } else {
-                    echo "Controller MyController not created . Unknown error\n";
+                    echo "\033[31m\u{25C6} Controller MyController not created . Unknown error\033[0m\n";
                 }
             }
         } else if ($argv[1] === "create:model") {
             if (array_key_exists(2, $argv)) {
-                $res = $commander->CreateModel(trim($argv[2]));
-                if ($res) {
-                    echo "Model {$argv[2]} has been successfully created :)\n";
+                $model = $commander->CreateModel(trim($argv[2]));
+                $modelController = $commander->CreateModelController(trim($argv[2]));
+                if ($model && $modelController) {
+                    echo "\033[32m\u{25C6} Model {$argv[2]} and {$argv[2]}Controller has been successfully created :)\033[0m\n";
                 } else {
-                    echo "Model {$argv[2]} not created . Unknown error!!!\n";
+                    echo "\033[31m\u{25C6} Model {$argv[2]} and {$argv[2]}Controller not created . Unknown error!!!\033[0m\n";
                 }
             } else {
-                $res = $commander->CreateModel("MyModel");
-                if ($res) {
-                    echo "Model MyModel by default has been successfully created :)\n";
+                $model = $commander->CreateModel("MyModel");
+                $modelController = $commander->CreateModelController("MyModelController");
+                if ($model && $modelController) {
+                    echo "\033[32m\u{25C6} Model MyModel and MyModelController by default has been successfully created :)\033[0m\n";
                 } else {
-                    echo "Model MyModel not created . Unknown error\n";
+                    echo "\033[31m\u{25C6} Model MyModel and MyModelController not created . Unknown error\033[0m\n";
                 }
             }
         } else {
